@@ -1,0 +1,9 @@
+function [U,VtU,VtY] = preCay1(Z,Y)
+nd = size(Y,2);
+YtZ = Y'*Z;
+ZtZ = Z'*Z;
+ZtYYtZ = YtZ'*YtZ;
+YYtZ = Y*YtZ;
+U = [Z - 0.5*YYtZ, Y];
+VtU = [0.5*YtZ, eye(nd); 0.75*ZtYYtZ - ZtZ, -0.5*YtZ'];
+VtY = VtU(:, nd + 1:end);

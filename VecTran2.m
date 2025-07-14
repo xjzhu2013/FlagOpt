@@ -1,0 +1,9 @@
+function T = VecTran2(t,Y,YtZ,ZtZ,M1,M2,M4,M5,M6)
+nd = size(Y,2);
+M7 = YtZ - 0.5*t*ZtZ;
+T1 = Y*M7;
+T2 = M1*(eye(nd) + t*YtZ - 0.25*t^2*ZtZ);
+A = eye(nd)+ 0.5*t*M6;
+B = M6*M7 + M2 + 0.5*t*M4;
+T3 = 0.5*t*M5*linsolve(A,B);
+T = T1 +  T2 - T3;
